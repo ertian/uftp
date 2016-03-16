@@ -13,7 +13,7 @@ import java.util.Properties;
  */
 public class FTPClientUtil {
 
-    public static final String FTP_PROPERTIES = "/ftp.properties";
+    private static final String FTP_PROPERTIES = "/ftp.properties";
 
     private FTPClientUtil(){
     }
