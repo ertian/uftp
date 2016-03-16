@@ -7,7 +7,6 @@ public class FTPClientUtilTest implements Runnable{
     public static void main(String[] args) throws Exception {
         for (int i = 0; i < 10; i++) {
             new Thread(new FTPClientUtilTest()).start();
-            new Thread(new FTPClientUtilTest()).start();
         }
     }
 
