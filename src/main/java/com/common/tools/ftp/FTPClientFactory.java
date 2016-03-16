@@ -5,6 +5,8 @@ import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
 
+import java.util.Properties;
+
 /**
  * Created by udbwcso on 2016/3/14.
  */
@@ -20,6 +22,13 @@ public class FTPClientFactory extends BasePooledObjectFactory<FTPClient> {
         this.port = port;
         this.username = username;
         this.password = password;
+    }
+
+    public FTPClientFactory(Properties properties){
+        this.host = properties.getProperty("host");
+        this.port = Integer.parseInt(properties.getProperty("port"));
+        this.username = properties.getProperty("username");
+        this.password = properties.getProperty("password");
     }
 
     /**
