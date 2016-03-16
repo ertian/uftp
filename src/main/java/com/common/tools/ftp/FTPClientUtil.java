@@ -26,25 +26,25 @@ public class FTPClientUtil {
      * Returns the pathname of the current working directory.
      * @return
      */
-    public static String getWorkingDirectory(){
+    public String getWorkingDirectory(){
         try {
             FTPClient client = getClientPool().borrowObject();
             String workingDir = client.printWorkingDirectory();
             getClientPool().returnObject(client);
             return workingDir;
         } catch (Exception e) {
-            e.printStackTrace();
+            
         }
         return null;
     }
 
-    private static ObjectPool<FTPClient> getClientPool(){
+    private ObjectPool<FTPClient> getClientPool(){
         return SingletonHolder.POOL;
     }
 
     private static class SingletonHolder {
 
-        public static final ObjectPool<FTPClient> POOL;
+        private static final ObjectPool<FTPClient> POOL;
 
         static {
             InputStream resourceAsStream = FTPClientUtil.class.getResourceAsStream(FTP_PROPERTIES);
@@ -65,7 +65,7 @@ public class FTPClientUtil {
             POOL = new GenericObjectPool<FTPClient>(new FTPClientFactory(p));
         }
 
-        public static FTPClientUtil instance = new FTPClientUtil();
+        private static FTPClientUtil instance = new FTPClientUtil();
 
     }
 
