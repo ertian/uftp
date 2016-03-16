@@ -1,17 +1,14 @@
 package com.common.tools.ftp;
 
-/**
- * Created by udbwcso on 2016/3/14.
- */
-public class FTPClientUtilTest implements Runnable{
-    public static void main(String[] args) throws Exception {
-        for (int i = 0; i < 10; i++) {
-            new Thread(new FTPClientUtilTest()).start();
-        }
-    }
+import org.junit.Test;
 
-    public void run() {
-        FTPClientUtil clientUtil = FTPClientUtil.getInstance();
-        System.out.println(clientUtil.getWorkingDirectory());
+/**
+ * Created by Administrator on 2016/3/16.
+ */
+public class FTPClientUtilTest {
+
+    @Test
+    public void getWorkingDirectory(){
+        System.out.println(FTPClientUtil.getInstance().getWorkingDirectory());
     }
 }
