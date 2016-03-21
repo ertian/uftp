@@ -12,6 +12,9 @@ public class FTPClientTest implements Runnable{
 
     public void run() {
         FTPClientUtil clientUtil = FTPClientUtil.getInstance();
-        System.out.println(clientUtil.getWorkingDirectory());
+        try {
+            System.out.println(clientUtil.getWorkingDirectory());
+        } catch (Exception e) {
+        }
     }
 }

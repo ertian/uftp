@@ -26,16 +26,11 @@ public class FTPClientUtil {
      * Returns the pathname of the current working directory.
      * @return
      */
-    public String getWorkingDirectory(){
-        try {
-            FTPClient client = getClientPool().borrowObject();
-            String workingDir = client.printWorkingDirectory();
-            getClientPool().returnObject(client);
-            return workingDir;
-        } catch (Exception e) {
-            
-        }
-        return null;
+    public String getWorkingDirectory() throws Exception {
+        FTPClient client = getClientPool().borrowObject();
+        String workingDir = client.printWorkingDirectory();
+        getClientPool().returnObject(client);
+        return workingDir;
     }
 
     private ObjectPool<FTPClient> getClientPool(){
