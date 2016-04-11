@@ -3,6 +3,7 @@ package com.common.tools.ftp;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.pool2.ObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPool;
+import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,10 +45,12 @@ public class FTPClientUtil {
         static {
             InputStream resourceAsStream = FTPClientUtil.class.getResourceAsStream(FTP_PROPERTIES);
             Properties p = null;
+            GenericObjectPoolConfig config = new GenericObjectPoolConfig();
             if (resourceAsStream != null) {
                 p = new Properties();
                 try {
                     p.load(resourceAsStream);
+                    config.setTimeBetweenEvictionRunsMillis(Long.valueOf(p.getProperty("timeBetweenEvictionRunsMillis")));
                 } catch (IOException e) {
                 } finally {
                     try {
@@ -57,7 +60,7 @@ public class FTPClientUtil {
                     }
                 }
             }
-            POOL = new GenericObjectPool<FTPClient>(new FTPClientFactory(p));
+            POOL = new GenericObjectPool<FTPClient>(new FTPClientFactory(p), config);
         }
 
         private static FTPClientUtil instance = new FTPClientUtil();
